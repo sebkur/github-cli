@@ -18,10 +18,14 @@ repositories {
     maven {
         url 'http://mvn.topobyte.de'
     }
+    maven {
+        url 'http://repo.jenkins-ci.org/public'
+    }
     mavenCentral()
 }
 
 dependencies {
+    compile 'org.kohsuke:github-api:1.80'
 }
 
 task copyJars(type: Copy) {
