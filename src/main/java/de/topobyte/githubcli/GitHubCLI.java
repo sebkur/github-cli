@@ -6,6 +6,9 @@ import de.topobyte.executableutils.DelegateTask;
 import de.topobyte.executableutils.Executable;
 import de.topobyte.executableutils.SystemOutExecutable;
 
+/**
+ * @author Sebastian Kuerten (sebastian@topobyte.de)
+ */
 public class GitHubCLI
 {
 

@@ -14,6 +14,9 @@ import org.kohsuke.github.GitHub;
 import de.topobyte.executableutils.Executable;
 import de.topobyte.executableutils.SystemOutExecutable;
 
+/**
+ * @author Sebastian Kuerten (sebastian@topobyte.de)
+ */
 public class ListRepos
 {
 
