@@ -1,0 +1,7 @@
+#!/bin/bash
+
+DIR=$(dirname $0)
+CMD="$DIR/github-cli.sh"
+CLASS="de.topobyte.githubcli.GitHubCLI"
+
+exec "$CMD" "$CLASS" "$@"
