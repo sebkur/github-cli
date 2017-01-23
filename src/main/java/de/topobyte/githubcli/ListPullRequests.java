@@ -34,7 +34,7 @@ public class ListPullRequests
 		}
 		String repoName = args[0];
 
-		GitHub github = GitHub.connectAnonymously();
+		GitHub github = Util.connect();
 
 		GHRepository repo = null;
 		try {

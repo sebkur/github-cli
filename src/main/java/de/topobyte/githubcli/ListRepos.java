@@ -36,7 +36,7 @@ public class ListRepos
 		}
 		String name = args[0];
 
-		GitHub github = GitHub.connectAnonymously();
+		GitHub github = Util.connect();
 
 		GHUser user = null;
 		try {

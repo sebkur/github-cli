@@ -44,7 +44,7 @@ public class ShowPullRequest
 					"Error while parsing pull request number");
 		}
 
-		GitHub github = GitHub.connectAnonymously();
+		GitHub github = Util.connect();
 
 		GHRepository repo = null;
 		try {
