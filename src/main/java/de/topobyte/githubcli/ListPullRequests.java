@@ -45,12 +45,17 @@ public class ListPullRequests
 		List<GHPullRequest> pullRequests = repo
 				.getPullRequests(GHIssueState.ALL);
 
+		int max = pullRequests.stream().mapToInt(GHPullRequest::getNumber).max()
+				.orElse(1);
+		int digits = (int) Math.round(Math.log10(max));
+
 		for (GHPullRequest pullRequest : pullRequests) {
-			System.out.println(
-					String.format("%d (%s, %s): %s", pullRequest.getNumber(),
-							Util.format(pullRequest.getCreatedAt()),
-							Util.pad(pullRequest.getState(), 6),
-							pullRequest.getTitle()));
+			System.out.println(String.format("%s (%s, %s): %s",
+					Util.pad(pullRequest.getNumber(), digits),
+					pullRequest.getNumber(),
+					Util.format(pullRequest.getCreatedAt()),
+					Util.pad(pullRequest.getState(), 6),
+					pullRequest.getTitle()));
 		}
 	}
 
