@@ -20,6 +20,7 @@ public class GitHubCLI
 		task.addWithName("list-pull-requests", ListPullRequests.class);
 		task.addWithName("show-pull-request", ShowPullRequest.class);
 		task.addWithName("list-issues", ListIssues.class);
+		task.addWithName("show-issue", ShowIssue.class);
 
 		task.execute(args);
 	}
