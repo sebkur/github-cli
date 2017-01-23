@@ -69,6 +69,7 @@ public class ShowIssue
 		System.out.println(String.format("user: %s (%s)", user.getLogin(),
 				user.getName()));
 		System.out.println(String.format("state: %s", issue.getState()));
+		System.out.println("is pull request? " + issue.isPullRequest());
 		System.out.println(
 				"================================================================================");
 		System.out.println(issue.getBody());
