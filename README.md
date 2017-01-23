@@ -23,7 +23,8 @@ Then run it:
 The program will connect anonymously to the GitHub API by default. To use
 an OAuth token, export the `GITHUB_OAUTH` variable with a token that you can
 generate in [your settings](https://github.com/settings/tokens). This will
-increase the rate limit from 60 calls per hour to 5000 (as of January 2017).
+increase the [rate limit](https://developer.github.com/v3/#rate-limiting)
+from 60 calls per hour to 5000 (as of January 2017).
 
 You can also specify the `GITHUB_LOGIN` variable in addition to prevent the
 underlying library to make an additional call to the API upon initialization
