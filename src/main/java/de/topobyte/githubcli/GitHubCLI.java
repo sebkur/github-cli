@@ -17,6 +17,7 @@ public class GitHubCLI
 		Executable exe = new SystemOutExecutable();
 		DelegateTask task = new DelegateTask(exe, "hubcli");
 		task.addWithName("list-repos", ListRepos.class);
+		task.addWithName("list-pull-requests", ListPullRequests.class);
 
 		task.execute(args);
 	}
