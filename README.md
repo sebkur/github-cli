@@ -6,3 +6,25 @@ Features include:
 * list repositories of a user/organization
 * list pull requests for a repository
 * show details about a specified pull request
+
+## Build and run
+
+Build the project like this:
+
+    gradle clean create
+
+Then run it:
+
+    ./scripts/hubcli
+
+
+## Credentials
+
+The program will connect anonymously to the GitHub API by default. To use
+an OAuth token, export the `GITHUB_OAUTH` variable with a token that you can
+generate in [your settings](https://github.com/settings/tokens). This will
+increase the rate limit from 60 calls per hour to 5000 (as of January 2017).
+
+You can also specify the `GITHUB_LOGIN` variable in addition to prevent the
+underlying library to make an additional call to the API upon initialization
+of the connection to retrieve the user that the token belongs to.
