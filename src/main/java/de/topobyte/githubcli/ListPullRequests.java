@@ -46,8 +46,11 @@ public class ListPullRequests
 				.getPullRequests(GHIssueState.ALL);
 
 		for (GHPullRequest pullRequest : pullRequests) {
-			System.out.println(String.format("%d: %s", pullRequest.getNumber(),
-					pullRequest.getTitle()));
+			System.out.println(
+					String.format("%d (%s, %s): %s", pullRequest.getNumber(),
+							Util.format(pullRequest.getCreatedAt()),
+							Util.pad(pullRequest.getState(), 6),
+							pullRequest.getTitle()));
 		}
 	}
 

@@ -1,6 +1,8 @@
 package de.topobyte.githubcli;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import org.kohsuke.github.GitHub;
 
@@ -22,6 +24,34 @@ public class Util
 		}
 
 		return github;
+	}
+
+	private static SimpleDateFormat dateFormat = new SimpleDateFormat(
+			"yyyy-MM-dd");
+
+	public static String format(Date date)
+	{
+		return dateFormat.format(date);
+	}
+
+	public static String pad(Object object, int length)
+	{
+		return pad(object.toString(), length);
+	}
+
+	public static String pad(String string, int length)
+	{
+		int len = string.length();
+		if (len >= length) {
+			return string;
+		}
+		int missing = length - len;
+		StringBuilder builder = new StringBuilder(length);
+		builder.append(string);
+		for (int i = 0; i < missing; i++) {
+			builder.append(' ');
+		}
+		return builder.toString();
 	}
 
 }
