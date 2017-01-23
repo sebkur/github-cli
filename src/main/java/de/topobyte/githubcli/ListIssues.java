@@ -45,7 +45,7 @@ public class ListIssues
 		List<GHIssue> issues = repo.getIssues(GHIssueState.ALL);
 
 		int max = issues.stream().mapToInt(GHIssue::getNumber).max().orElse(1);
-		int digits = (int) Math.round(Math.log10(max));
+		int digits = Integer.toString(max).length();
 
 		for (GHIssue issue : issues) {
 			System.out.println(String.format("%s (%s, %s): %s",

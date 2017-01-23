@@ -47,7 +47,7 @@ public class ListPullRequests
 
 		int max = pullRequests.stream().mapToInt(GHPullRequest::getNumber).max()
 				.orElse(1);
-		int digits = (int) Math.round(Math.log10(max));
+		int digits = Integer.toString(max).length();
 
 		for (GHPullRequest pullRequest : pullRequests) {
 			System.out.println(String.format("%s (%s, %s): %s",
