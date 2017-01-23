@@ -34,12 +34,30 @@ public class Util
 		return dateFormat.format(date);
 	}
 
-	public static String pad(Object object, int length)
+	public static String padFront(Object object, int length)
 	{
-		return pad(object.toString(), length);
+		return padFront(object.toString(), length);
 	}
 
-	public static String pad(String string, int length)
+	public static String padFront(String string, int length)
+	{
+		int len = string.length();
+		if (len >= length) {
+			return string;
+		}
+		int missing = length - len;
+		StringBuilder builder = new StringBuilder(length);
+		pad(builder, ' ', missing);
+		builder.append(string);
+		return builder.toString();
+	}
+
+	public static String padTail(Object object, int length)
+	{
+		return padTail(object.toString(), length);
+	}
+
+	public static String padTail(String string, int length)
 	{
 		int len = string.length();
 		if (len >= length) {
@@ -48,10 +66,15 @@ public class Util
 		int missing = length - len;
 		StringBuilder builder = new StringBuilder(length);
 		builder.append(string);
-		for (int i = 0; i < missing; i++) {
-			builder.append(' ');
-		}
+		pad(builder, ' ', missing);
 		return builder.toString();
+	}
+
+	private static void pad(StringBuilder builder, char c, int missing)
+	{
+		for (int i = 0; i < missing; i++) {
+			builder.append(c);
+		}
 	}
 
 }

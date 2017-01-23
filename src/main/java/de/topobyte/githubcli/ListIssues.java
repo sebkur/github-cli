@@ -49,9 +49,9 @@ public class ListIssues
 
 		for (GHIssue issue : issues) {
 			System.out.println(String.format("%s (%s, %s): %s",
-					Util.pad(issue.getNumber(), digits),
+					Util.padFront(issue.getNumber(), digits),
 					Util.format(issue.getCreatedAt()),
-					Util.pad(issue.getState(), 6), issue.getTitle()));
+					Util.padTail(issue.getState(), 6), issue.getTitle()));
 		}
 	}
 

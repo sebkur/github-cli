@@ -51,10 +51,10 @@ public class ListPullRequests
 
 		for (GHPullRequest pullRequest : pullRequests) {
 			System.out.println(String.format("%s (%s, %s): %s",
-					Util.pad(pullRequest.getNumber(), digits),
+					Util.padFront(pullRequest.getNumber(), digits),
 					pullRequest.getNumber(),
 					Util.format(pullRequest.getCreatedAt()),
-					Util.pad(pullRequest.getState(), 6),
+					Util.padTail(pullRequest.getState(), 6),
 					pullRequest.getTitle()));
 		}
 	}
