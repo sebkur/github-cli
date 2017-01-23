@@ -20,16 +20,18 @@ import de.topobyte.executableutils.SystemOutExecutable;
 public class ListRepos
 {
 
-	public static void main(String[] args) throws IOException
+	public static void main(String name, String[] args) throws IOException
 	{
 		Executable exe = new SystemOutExecutable();
 		ListRepos task = new ListRepos();
-		task.execute(exe, args);
+		task.execute(name, exe, args);
 	}
 
-	private void execute(Executable exe, String[] args) throws IOException
+	private void execute(String exeName, Executable exe, String[] args)
+			throws IOException
 	{
 		if (args.length < 1) {
+			exe.printMessage(String.format("Usage: %s <username>", exeName));
 			exe.printMessageAndExitFail("Please specify a username");
 		}
 		String name = args[0];
