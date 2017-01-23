@@ -9,6 +9,9 @@ Features include:
 
 ## Build and run
 
+Java 8 is required because we use lambda expressions here and there. Also
+gradle is needed for building the project.
+
 Build the project like this:
 
     gradle clean create
@@ -16,7 +19,6 @@ Build the project like this:
 Then run it:
 
     ./scripts/hubcli
-
 
 ## Credentials
 
