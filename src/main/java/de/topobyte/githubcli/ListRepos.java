@@ -51,7 +51,9 @@ public class ListRepos
 		Collections.sort(repoNames, String.CASE_INSENSITIVE_ORDER);
 
 		for (String repo : repoNames) {
-			System.out.println(repo);
+			GHRepository repository = repositories.get(repo);
+			int stars = repository.getStargazersCount();
+			System.out.println(String.format("%s (%d*)", repo, stars));
 		}
 	}
 
