@@ -21,6 +21,7 @@ public class GitHubCLI
 		task.addWithName("show-pull-request", ShowPullRequest.class);
 		task.addWithName("list-issues", ListIssues.class);
 		task.addWithName("show-issue", ShowIssue.class);
+		task.addWithName("fork", Fork.class);
 
 		task.execute(args);
 	}
