@@ -28,6 +28,9 @@ public class GitHubCLI
 			options.addCommand("show-issue", ShowIssue.class);
 			options.addCommand("fork", Fork.class);
 			options.addCommand("rate-limit", RateLimit.class);
+			options.addCommand("search-popular",
+					SearchPopularRepositories.OPTIONS_FACTORY,
+					SearchPopularRepositories.class);
 
 			return options;
 		}

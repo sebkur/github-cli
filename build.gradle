@@ -26,6 +26,7 @@ repositories {
 
 dependencies {
     compile 'org.kohsuke:github-api:1.95'
+    compile 'com.google.guava:guava:19.0'
     compile 'de.topobyte:executable-utils:0.0.2'
     compile 'de.topobyte:commons-cli-helper:0.0.6'
 }
