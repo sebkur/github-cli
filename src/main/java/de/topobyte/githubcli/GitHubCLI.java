@@ -22,6 +22,7 @@ public class GitHubCLI
 		task.addWithName("list-issues", ListIssues.class);
 		task.addWithName("show-issue", ShowIssue.class);
 		task.addWithName("fork", Fork.class);
+		task.addWithName("rate-limit", RateLimit.class);
 
 		task.execute(args);
 	}
