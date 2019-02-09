@@ -14,6 +14,7 @@ import org.kohsuke.github.GHRepository;
 import org.kohsuke.github.GHUser;
 import org.kohsuke.github.GitHub;
 
+import de.topobyte.utilities.apache.commons.cli.OptionHelper;
 import de.topobyte.utilities.apache.commons.cli.commands.args.CommonsCliArguments;
 import de.topobyte.utilities.apache.commons.cli.commands.options.CommonsCliExeOptions;
 import de.topobyte.utilities.apache.commons.cli.commands.options.ExeOptions;
@@ -33,7 +34,7 @@ public class ListRepos
 		public ExeOptions createOptions()
 		{
 			Options options = new Options();
-			options.addOption(null, OPTION_SORT_BY_STARS, false,
+			OptionHelper.addL(options, OPTION_SORT_BY_STARS, false, false,
 					"Sort results by number of stars");
 			return new CommonsCliExeOptions(options, "[options] <username>");
 		}
