@@ -25,7 +25,7 @@ repositories {
 }
 
 dependencies {
-    compile 'org.kohsuke:github-api:1.80'
+    compile 'org.kohsuke:github-api:1.95'
     compile 'de.topobyte:executable-utils:0.0.2'
 }
 
