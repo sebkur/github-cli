@@ -14,7 +14,7 @@ gradle is needed for building the project.
 
 Build the project like this:
 
-    gradle clean create
+    ./gradlew clean create
 
 Then run it:
 
