@@ -4,15 +4,20 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.Options;
 import org.kohsuke.github.GHRepository;
 import org.kohsuke.github.GHUser;
 import org.kohsuke.github.GitHub;
 
-import de.topobyte.executableutils.Executable;
-import de.topobyte.executableutils.SystemOutExecutable;
+import de.topobyte.utilities.apache.commons.cli.commands.args.CommonsCliArguments;
+import de.topobyte.utilities.apache.commons.cli.commands.options.CommonsCliExeOptions;
+import de.topobyte.utilities.apache.commons.cli.commands.options.ExeOptions;
+import de.topobyte.utilities.apache.commons.cli.commands.options.ExeOptionsFactory;
 
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
@@ -20,21 +25,35 @@ import de.topobyte.executableutils.SystemOutExecutable;
 public class ListRepos
 {
 
-	public static void main(String name, String[] args) throws IOException
-	{
-		Executable exe = new SystemOutExecutable();
-		ListRepos task = new ListRepos();
-		task.execute(name, exe, args);
-	}
+	private static final String OPTION_SORT_BY_STARS = "sort-by-stars";
 
-	private void execute(String exeName, Executable exe, String[] args)
+	public static ExeOptionsFactory OPTIONS_FACTORY = new ExeOptionsFactory() {
+
+		@Override
+		public ExeOptions createOptions()
+		{
+			Options options = new Options();
+			options.addOption(null, OPTION_SORT_BY_STARS, false,
+					"Sort results by number of stars");
+			return new CommonsCliExeOptions(options, "[options] <username>");
+		}
+
+	};
+
+	public static void main(String exename, CommonsCliArguments arguments)
 			throws IOException
 	{
-		if (args.length < 1) {
-			exe.printMessage(String.format("Usage: %s <username>", exeName));
-			exe.printMessageAndExitFail("Please specify a username");
+		CommandLine line = arguments.getLine();
+		List<String> args = line.getArgList();
+
+		if (args.size() < 1) {
+			System.out.println("Please specify a username");
+			arguments.getOptions().usage(exename);
+			System.exit(1);
 		}
-		String name = args[0];
+		String name = args.get(0);
+
+		boolean sortByStars = line.hasOption(OPTION_SORT_BY_STARS);
 
 		GitHub github = Util.connect();
 
@@ -42,18 +61,39 @@ public class ListRepos
 		try {
 			user = github.getUser(name);
 		} catch (FileNotFoundException e) {
-			exe.printMessageAndExitFail("Username not found");
+			System.out.println("Username not found");
+			System.exit(1);
 		}
 		Map<String, GHRepository> repositories = user.getRepositories();
+
+		List<GHRepository> repos = new ArrayList<>(repositories.values());
+
+		if (sortByStars) {
+			repos.sort(new Comparator<GHRepository>() {
+
+				@Override
+				public int compare(GHRepository o1, GHRepository o2)
+				{
+					int cmp = Integer.compare(o1.getStargazersCount(),
+							o2.getStargazersCount());
+					if (cmp != 0) {
+						return cmp;
+					}
+					return o1.getName().compareTo(o2.getName());
+				}
+
+			});
+		}
 
 		List<String> repoNames = new ArrayList<>();
 		repoNames.addAll(repositories.keySet());
 		Collections.sort(repoNames, String.CASE_INSENSITIVE_ORDER);
 
-		for (String repo : repoNames) {
-			GHRepository repository = repositories.get(repo);
+		for (GHRepository repository : repos) {
 			int stars = repository.getStargazersCount();
-			System.out.println(String.format("%s (%d*)", repo, stars));
+			String language = repository.getLanguage();
+			System.out.println(String.format("%s (%d*, %s)",
+					repository.getName(), stars, language));
 		}
 	}
 
