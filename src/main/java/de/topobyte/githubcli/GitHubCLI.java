@@ -33,6 +33,7 @@ public class GitHubCLI
 			options.addCommand("search-popular",
 					SearchPopularRepositories.OPTIONS_FACTORY,
 					SearchPopularRepositories.class);
+			options.addCommand("clone", Clone.OPTIONS_FACTORY, Clone.class);
 
 			return options;
 		}
