@@ -1,5 +1,6 @@
 This project is an (incomplete) command line tool to make queries to the
-GitHub API. It is built on top of this Java library:
+[GitHub API](https://developer.github.com/v3/).
+It is built on top of this Java library:
 [kohsuke/github-api](https://github.com/kohsuke/github-api).
 
 Features include:
