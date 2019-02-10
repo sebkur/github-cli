@@ -38,3 +38,8 @@ of the connection to retrieve the user that the token belongs to.
 If you acutally want to manipulate your GitHub profile and repositories,
 you need to grant certain permissions in your [token
 settings](https://github.com/settings/tokens).
+
+## Todo
+
+* When `clone` fails, delete the directory with the failed checkout if it
+  has been created by us.
