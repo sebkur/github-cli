@@ -28,6 +28,7 @@ public class SearchPopularRepositories
 
 	private static final String OPTION_LANGUAGE = "language";
 	private static final String OPTION_MIN_STARS = "min-stars";
+	private static final String OPTION_MAX_STARS = "max-stars";
 	private static final String OPTION_LIMIT = "limit";
 
 	public static ExeOptionsFactory OPTIONS_FACTORY = new ExeOptionsFactory() {
@@ -40,6 +41,8 @@ public class SearchPopularRepositories
 					"the programming language");
 			OptionHelper.addL(options, OPTION_MIN_STARS, true, false,
 					"the minimum number of stars");
+			OptionHelper.addL(options, OPTION_MAX_STARS, true, false,
+					"the maximum number of stars");
 			OptionHelper.addL(options, OPTION_LIMIT, true, false,
 					"the maximum number of results");
 			return new CommonsCliExeOptions(options, "[options] <query>");
@@ -72,6 +75,10 @@ public class SearchPopularRepositories
 		if (line.hasOption(OPTION_MIN_STARS)) {
 			String minStars = line.getOptionValue(OPTION_MIN_STARS);
 			searchBuilder.stars(">" + minStars);
+		}
+		if (line.hasOption(OPTION_MAX_STARS)) {
+			String maxStars = line.getOptionValue(OPTION_MAX_STARS);
+			searchBuilder.stars("<" + maxStars);
 		}
 		if (line.hasOption(OPTION_LANGUAGE)) {
 			String language = line.getOptionValue(OPTION_LANGUAGE);
