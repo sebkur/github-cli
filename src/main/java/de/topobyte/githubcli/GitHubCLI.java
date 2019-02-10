@@ -36,6 +36,8 @@ public class GitHubCLI
 			options.addCommand("clone", Clone.OPTIONS_FACTORY, Clone.class);
 			options.addCommand("clone-for-pr", CloneForPR.OPTIONS_FACTORY,
 					CloneForPR.class);
+			options.addCommand("repo-info", RepoInfo.OPTIONS_FACTORY,
+					RepoInfo.class);
 
 			return options;
 		}
