@@ -49,9 +49,6 @@ public class SetTopics
 		if (args.size() < 1) {
 			cli.printMessageAndHelpAndExit("Please specify a repository");
 		}
-		if (args.size() < 2) {
-			cli.printMessageAndHelpAndExit("Please specify at least one topic");
-		}
 		String repoName = args.get(0);
 
 		GitHub github = Util.connect();
