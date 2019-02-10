@@ -34,6 +34,8 @@ public class GitHubCLI
 					SearchPopularRepositories.OPTIONS_FACTORY,
 					SearchPopularRepositories.class);
 			options.addCommand("clone", Clone.OPTIONS_FACTORY, Clone.class);
+			options.addCommand("clone-for-pr", CloneForPR.OPTIONS_FACTORY,
+					CloneForPR.class);
 
 			return options;
 		}
