@@ -43,3 +43,27 @@ settings](https://github.com/settings/tokens).
 
 * When `clone` fails, delete the directory with the failed checkout if it
   has been created by us.
+
+## Subcommands
+
+The command line supports a number of subcommands as a first argument:
+
+    ./scripts/hubcli <command>
+
+Here's the list of commands:
+
+    list-repos
+    list-pull-requests
+    show-pull-request
+    list-issues
+    show-issue
+    fork
+    fork-and-clone
+    rate-limit
+    search-popular
+    clone
+    clone-for-pr
+    repo-info
+    add-topic
+    remove-topic
+    set-topics
