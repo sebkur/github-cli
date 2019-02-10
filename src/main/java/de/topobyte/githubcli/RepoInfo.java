@@ -60,6 +60,9 @@ public class RepoInfo
 		System.out
 				.println(String.format("HTTP: %s", repo.getHttpTransportUrl()));
 		System.out.println(String.format("Language: %s", repo.getLanguage()));
+		System.out.println(
+				String.format("Description: %s", repo.getDescription()));
+		System.out.println(String.format("Homepage: %s", repo.getHomepage()));
 	}
 
 }
