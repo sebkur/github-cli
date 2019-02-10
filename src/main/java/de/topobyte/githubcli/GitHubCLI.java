@@ -40,7 +40,7 @@ public class GitHubCLI
 	public static void main(String[] args) throws RunnerException
 	{
 		ExeOptions options = OPTIONS_FACTORY.createOptions();
-		ArgumentParser parser = new ArgumentParser("imap-tools", options);
+		ArgumentParser parser = new ArgumentParser("hubcli", options);
 
 		ExecutionData data = parser.parse(args);
 		if (data != null) {
