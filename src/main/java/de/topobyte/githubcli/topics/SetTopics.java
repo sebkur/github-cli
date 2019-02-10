@@ -1,4 +1,4 @@
-package de.topobyte.githubcli;
+package de.topobyte.githubcli.topics;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -13,6 +13,7 @@ import org.kohsuke.github.Topics;
 
 import com.google.common.base.Joiner;
 
+import de.topobyte.githubcli.Util;
 import de.topobyte.utilities.apache.commons.cli.CliTool;
 import de.topobyte.utilities.apache.commons.cli.commands.args.CommonsCliArguments;
 import de.topobyte.utilities.apache.commons.cli.commands.options.CommonsCliExeOptions;
@@ -22,7 +23,7 @@ import de.topobyte.utilities.apache.commons.cli.commands.options.ExeOptionsFacto
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public class RepoInfo
+public class SetTopics
 {
 
 	public static ExeOptionsFactory OPTIONS_FACTORY = new ExeOptionsFactory() {
@@ -31,7 +32,8 @@ public class RepoInfo
 		public ExeOptions createOptions()
 		{
 			Options options = new Options();
-			return new CommonsCliExeOptions(options, "[options] <repo>");
+			return new CommonsCliExeOptions(options,
+					"[options] <repo> [<topic...>]");
 		}
 
 	};
@@ -47,6 +49,9 @@ public class RepoInfo
 		if (args.size() < 1) {
 			cli.printMessageAndHelpAndExit("Please specify a repository");
 		}
+		if (args.size() < 2) {
+			cli.printMessageAndHelpAndExit("Please specify at least one topic");
+		}
 		String repoName = args.get(0);
 
 		GitHub github = Util.connect();
@@ -59,18 +64,18 @@ public class RepoInfo
 		}
 
 		GHTopics topics = Topics.get(repo);
+		topics.clearTopics();
+		for (int i = 1; i < args.size(); i++) {
+			topics.addTopic(args.get(i));
+		}
+		if (topics.getTopics().isEmpty()) {
+			System.out.println("No topics");
+		} else {
+			System.out.println(
+					"Topics: " + Joiner.on(", ").join(topics.getTopics()));
+		}
 
-		System.out.println(String.format("Web: %s", repo.getHtmlUrl()));
-		System.out.println(String.format("Git: %s", repo.getGitTransportUrl()));
-		System.out.println(String.format("SSH: %s", repo.getSshUrl()));
-		System.out
-				.println(String.format("HTTP: %s", repo.getHttpTransportUrl()));
-		System.out.println(String.format("Language: %s", repo.getLanguage()));
-		System.out.println(
-				String.format("Description: %s", repo.getDescription()));
-		System.out.println(String.format("Homepage: %s", repo.getHomepage()));
-		System.out.println(String.format("Topics: %s",
-				Joiner.on(", ").join(topics.getTopics())));
+		Topics.update(repo, topics);
 	}
 
 }

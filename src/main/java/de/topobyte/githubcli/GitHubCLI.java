@@ -1,5 +1,8 @@
 package de.topobyte.githubcli;
 
+import de.topobyte.githubcli.topics.AddTopic;
+import de.topobyte.githubcli.topics.RemoveTopic;
+import de.topobyte.githubcli.topics.SetTopics;
 import de.topobyte.utilities.apache.commons.cli.commands.ArgumentParser;
 import de.topobyte.utilities.apache.commons.cli.commands.ExeRunner;
 import de.topobyte.utilities.apache.commons.cli.commands.ExecutionData;
@@ -38,6 +41,12 @@ public class GitHubCLI
 					CloneForPR.class);
 			options.addCommand("repo-info", RepoInfo.OPTIONS_FACTORY,
 					RepoInfo.class);
+			options.addCommand("add-topic", AddTopic.OPTIONS_FACTORY,
+					AddTopic.class);
+			options.addCommand("remove-topic", RemoveTopic.OPTIONS_FACTORY,
+					RemoveTopic.class);
+			options.addCommand("set-topics", SetTopics.OPTIONS_FACTORY,
+					SetTopics.class);
 
 			return options;
 		}

@@ -31,3 +31,9 @@ from 60 calls per hour to 5000 (as of January 2017).
 You can also specify the `GITHUB_LOGIN` variable in addition to prevent the
 underlying library to make an additional call to the API upon initialization
 of the connection to retrieve the user that the token belongs to.
+
+### Modifying data
+
+If you acutally want to manipulate your GitHub profile and repositories,
+you need to grant certain permissions in your [token
+settings](https://github.com/settings/tokens).
