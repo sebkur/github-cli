@@ -2,13 +2,20 @@ package de.topobyte.githubcli;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.List;
 
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.Options;
 import org.kohsuke.github.GHOrganization;
 import org.kohsuke.github.GHRepository;
 import org.kohsuke.github.GitHub;
 
-import de.topobyte.executableutils.Executable;
-import de.topobyte.executableutils.SystemOutExecutable;
+import de.topobyte.utilities.apache.commons.cli.CliTool;
+import de.topobyte.utilities.apache.commons.cli.OptionHelper;
+import de.topobyte.utilities.apache.commons.cli.commands.args.CommonsCliArguments;
+import de.topobyte.utilities.apache.commons.cli.commands.options.CommonsCliExeOptions;
+import de.topobyte.utilities.apache.commons.cli.commands.options.ExeOptions;
+import de.topobyte.utilities.apache.commons.cli.commands.options.ExeOptionsFactory;
 
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
@@ -16,38 +23,45 @@ import de.topobyte.executableutils.SystemOutExecutable;
 public class Fork
 {
 
-	public static void main(String name, String[] args) throws IOException
-	{
-		Executable exe = new SystemOutExecutable();
-		Fork task = new Fork();
-		task.execute(name, exe, args);
-	}
+	private static final String OPTION_ORGANIZATION = "organization";
 
-	private void execute(String exeName, Executable exe, String[] args)
+	public static ExeOptionsFactory OPTIONS_FACTORY = new ExeOptionsFactory() {
+
+		@Override
+		public ExeOptions createOptions()
+		{
+			Options options = new Options();
+			OptionHelper.addL(options, OPTION_ORGANIZATION, true, false,
+					"An organization to fork to");
+			return new CommonsCliExeOptions(options, "[options] <repo>");
+		}
+
+	};
+
+	public static void main(String exeName, CommonsCliArguments arguments)
 			throws IOException
 	{
-		if (args.length < 1) {
-			exe.printMessage(String.format(
-					"Usage: %s <repository> [<organization>]", exeName));
-			exe.printMessageAndExitFail("Please specify a repository");
+		CliTool cli = arguments.getOptions().tool(exeName);
+
+		CommandLine line = arguments.getLine();
+
+		List<String> args = line.getArgList();
+		if (args.size() < 1) {
+			cli.printMessageAndHelpAndExit("Please specify a repository");
 		}
-		String repoName = args[0];
-		String organizationName = null;
-		if (args.length > 1) {
-			organizationName = args[1];
-		}
+		String repoName = args.get(0);
+		String organizationName = line.getOptionValue(OPTION_ORGANIZATION);
 
 		GitHub github = Util.connect();
 		if (github.isAnonymous()) {
-			exe.printMessageAndExitFail(
-					"Forking does not work in anonymous mode");
+			cli.printMessageAndExit("Forking does not work in anonymous mode");
 		}
 
 		GHRepository repo = null;
 		try {
 			repo = github.getRepository(repoName);
 		} catch (FileNotFoundException e) {
-			exe.printMessageAndExitFail("Repository not found");
+			cli.printMessageAndExit("Repository not found");
 		}
 
 		if (organizationName == null) {

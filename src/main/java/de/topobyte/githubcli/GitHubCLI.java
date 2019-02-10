@@ -26,7 +26,7 @@ public class GitHubCLI
 			options.addCommand("show-pull-request", ShowPullRequest.class);
 			options.addCommand("list-issues", ListIssues.class);
 			options.addCommand("show-issue", ShowIssue.class);
-			options.addCommand("fork", Fork.class);
+			options.addCommand("fork", Fork.OPTIONS_FACTORY, Fork.class);
 			options.addCommand("rate-limit", RateLimit.class);
 			options.addCommand("search-popular",
 					SearchPopularRepositories.OPTIONS_FACTORY,
