@@ -41,6 +41,10 @@ dependencies {
     runtime "log4j:log4j:1.2.16"
 }
 
+compileJava {
+    options.compilerArgs += "-Xlint:deprecation";
+}
+
 task copyJars(type: Copy) {
     into "$buildDir/lib-run"
     from jar
