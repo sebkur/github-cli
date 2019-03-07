@@ -34,11 +34,11 @@ public class SshUtil
 	{
 		static Map<Integer, String> name = new HashMap<>();
 		static {
-			name.put(new Integer(DEBUG), "DEBUG: ");
-			name.put(new Integer(INFO), "INFO: ");
-			name.put(new Integer(WARN), "WARN: ");
-			name.put(new Integer(ERROR), "ERROR: ");
-			name.put(new Integer(FATAL), "FATAL: ");
+			name.put(Integer.valueOf(DEBUG), "DEBUG: ");
+			name.put(Integer.valueOf(INFO), "INFO: ");
+			name.put(Integer.valueOf(WARN), "WARN: ");
+			name.put(Integer.valueOf(ERROR), "ERROR: ");
+			name.put(Integer.valueOf(FATAL), "FATAL: ");
 		}
 
 		@Override
@@ -50,7 +50,7 @@ public class SshUtil
 		@Override
 		public void log(int level, String message)
 		{
-			System.err.print(name.get(new Integer(level)));
+			System.err.print(name.get(Integer.valueOf(level)));
 			System.err.println(message);
 		}
 	}
