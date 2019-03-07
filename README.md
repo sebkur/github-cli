@@ -11,7 +11,7 @@ Features include:
 ## Build and run
 
 Java 8 is required because we use lambda expressions here and there. Also
-gradle is needed for building the project.
+Gradle is needed for building the project.
 
 Build the project like this:
 
@@ -35,7 +35,7 @@ of the connection to retrieve the user that the token belongs to.
 
 ### Modifying data
 
-If you acutally want to manipulate your GitHub profile and repositories,
+If you actually want to manipulate your GitHub profile and repositories,
 you need to grant certain permissions in your [token
 settings](https://github.com/settings/tokens).
 
