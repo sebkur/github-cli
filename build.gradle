@@ -30,6 +30,7 @@ dependencies {
     compile 'de.topobyte:executable-utils:0.0.2'
     compile 'de.topobyte:commons-cli-helper:0.1.0'
     compile 'de.topobyte:system-utils:0.0.1'
+    compile 'de.topobyte:github-api-utils:0.0.1'
 
     compile 'com.jcraft:jsch.agentproxy.jsch:0.0.9'
     compile 'com.jcraft:jsch.agentproxy.sshagent:0.0.9'
