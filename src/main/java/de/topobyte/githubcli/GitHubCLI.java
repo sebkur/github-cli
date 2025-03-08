@@ -47,6 +47,7 @@ public class GitHubCLI
 					RemoveTopic.class);
 			options.addCommand("set-topics", SetTopics.OPTIONS_FACTORY,
 					SetTopics.class);
+			options.addCommand("list-releases", ListReleases.class);
 
 			return options;
 		}

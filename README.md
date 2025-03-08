@@ -67,3 +67,4 @@ Here's the list of commands:
     add-topic
     remove-topic
     set-topics
+    list-releases
